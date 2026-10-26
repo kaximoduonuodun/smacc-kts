@@ -1,0 +1,26 @@
+# 本地状态文件（已迁到 S3 后，这些不应该存在）
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# 敏感变量文件
+*.tfvars
+*.tfvars.json
+!envs/**/*.tfvars
+!bootstrap/terraform.tfvars
+
+# 后端配置（含 profile，不入库）
+**/backend.conf
+
+# Terraform 工作目录
+.terraform/
+.terraform.lock.hcl
+
+# 崩溃日志
+crash.log
+
+# OS / IDE
+.DS_Store
+.idea/
+*.swp
+*.bak

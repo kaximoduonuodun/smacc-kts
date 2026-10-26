@@ -1,0 +1,14 @@
+﻿apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+  - rbac.yaml
+  - daemonset-agent.yaml
+
+configMapGenerator:
+  - name: otel-collector-agent-config
+    files:
+      - config.yaml=config.yaml
+    options:
+      disableNameSuffixHash: false

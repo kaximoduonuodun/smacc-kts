@@ -1,0 +1,16 @@
+FROM eclipse-temurin:17-jre
+
+ENV APP_HOME=/app
+WORKDIR $APP_HOME
+
+# 可选：装个 curl 方便排障
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends curl ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+
+# 统一入口脚本（后面业务镜像会覆盖 war 路径）
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+EXPOSE 8080
+ENTRYPOINT ["/entrypoint.sh"]
